@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>isso ai memo</title>
+</head>
+<body>
+
+<div id="caixa"></div>
+
+<script src="js/colebrook.min.js"></script>
+<!--<script src="js/estatica.js"></script>-->
+
+<script>
+	temp = 30;
+	rugosidade = 0;
+	diam = 10;
+	dens = 101303 /(286.9 *(temp + 273.15));
+	visc_dinam = ((13 + 0.1 * temp) * 1e-6) * dens;
+
+	u23 = 5;
+	d23 = 0.7;
+
+	re = dens * u23 * d23 / visc_dinam;
+
+	document.getElementById('caixa').innerHTML = f = colebrook(rugosidade/diam, re);
+
+	d = ( 1 * Math.pow(6,2) ) / ( f *  )
+
+	document.getElementById('caixa').innerHTML = document.getElementById('caixa').innerHTML + "<br>" + d;
+
+</script>
+
+</body>
+</html>
