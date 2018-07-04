@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'arbitraria.ui'
+# Form implementation generated from reading ui file 'constante1.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.2
 #
@@ -9,34 +9,23 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 
-from dim.resultados import Ui_Resultados
-from dim.erro import Ui_Erro
+from resultados import Ui_Resultados
 
-class Ui_Arbitraria(object):
-    def setupUi(self, arbitraria):
-        arbitraria.setObjectName("arbitraria")
-        arbitraria.resize(800, 600)
-        arbitraria.setStyleSheet("QWidget { background-color: rgb(11, 173, 224) }\n"
+class Ui_Constante1(object):
+    def setupUi(self, Constante1):
+        Constante1.setObjectName("Constante1")
+        Constante1.resize(800, 600)
+        Constante1.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        Constante1.setStyleSheet("QWidget { background-color: rgb(11, 173, 224) }\n"
 "QPushButton { border-radius: 5px; background-color: white; border-bottom: 1px solid black }\n"
 "QPushButton:hover { background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(238, 238, 238, 255)) }\n"
-"QLabel{ color: white }\n"
-"QLineEdit{ background-color: white; color: black }")
-        self.titulo = QtWidgets.QLabel(arbitraria)
-        self.titulo.setGeometry(QtCore.QRect(0, 40, 801, 111))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.titulo.sizePolicy().hasHeightForWidth())
-        self.titulo.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setFamily("Roboto")
-        font.setPointSize(85)
-        self.titulo.setFont(font)
-        self.titulo.setStyleSheet("color: white")
-        self.titulo.setAlignment(QtCore.Qt.AlignCenter)
-        self.titulo.setObjectName("titulo")
-        self.formLayoutWidget = QtWidgets.QWidget(arbitraria)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(0, 170, 801, 206))
+"QLineEdit, QComboBox { background-color: white; color: black }\n"
+"QComboBox { border-radius: 2px; border: 1px solid lightgrey }\n"
+"QComboBox::item { background-color: white }\n"
+"QComboBox::item:selected { background-color: rgb(11, 173, 224) }\n"
+"QLabel { color: white }")
+        self.formLayoutWidget = QtWidgets.QWidget(Constante1)
+        self.formLayoutWidget.setGeometry(QtCore.QRect(0, 170, 801, 261))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
         self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
         self.formLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -66,7 +55,7 @@ class Ui_Arbitraria(object):
         self.lineEdit.setStyleSheet("")
         self.lineEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit.setClearButtonEnabled(False)
-        self.lineEdit.setObjectName("lineEdit") # temperatura
+        self.lineEdit.setObjectName("lineEdit")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.lineEdit)
         self.label_2 = QtWidgets.QLabel(self.formLayoutWidget)
         font = QtGui.QFont()
@@ -173,8 +162,39 @@ class Ui_Arbitraria(object):
         self.lineEdit_6.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_6.setObjectName("lineEdit_6")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.lineEdit_6)
-        self.pushButton = QtWidgets.QPushButton(arbitraria)
-        self.pushButton.setGeometry(QtCore.QRect(200, 420, 401, 51))
+        self.label_7 = QtWidgets.QLabel(self.formLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(12)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_7)
+        self.comboBox = QtWidgets.QComboBox(self.formLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(12)
+        self.comboBox.setFont(font)
+        self.comboBox.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContents)
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.comboBox)
+        self.titulo = QtWidgets.QLabel(Constante1)
+        self.titulo.setGeometry(QtCore.QRect(0, 40, 801, 111))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.titulo.sizePolicy().hasHeightForWidth())
+        self.titulo.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(85)
+        self.titulo.setFont(font)
+        self.titulo.setStyleSheet("color: white")
+        self.titulo.setAlignment(QtCore.Qt.AlignCenter)
+        self.titulo.setObjectName("titulo")
+        self.pushButton = QtWidgets.QPushButton(Constante1)
+        self.pushButton.setGeometry(QtCore.QRect(200, 450, 401, 51))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -187,57 +207,70 @@ class Ui_Arbitraria(object):
 
         self.pushButton.clicked.connect(self.calcula)
 
-        self.retranslateUi(arbitraria)
-        QtCore.QMetaObject.connectSlotsByName(arbitraria)
+        self.retranslateUi(Constante1)
+        QtCore.QMetaObject.connectSlotsByName(Constante1)
 
-    def retranslateUi(self, arbitraria):
+    def retranslateUi(self, Constante1):
         _translate = QtCore.QCoreApplication.translate
-        arbitraria.setWindowTitle(_translate("arbitraria", "DIMduct >> Arbitrária"))
-        self.titulo.setText(_translate("arbitraria", "DIMduct"))
-        self.label.setText(_translate("arbitraria", "Temperatura (°C):"))
-        self.label_2.setText(_translate("arbitraria", "Rugosidade Absoluta (m):"))
-        self.label_3.setText(_translate("arbitraria", "Comprimento do Trecho (m):"))
-        self.label_4.setText(_translate("arbitraria", "Vazão do Trecho (m³/s):"))
-        self.label_5.setText(_translate("arbitraria", "Ângulo Total de Curvas (°):"))
-        self.label_6.setText(_translate("arbitraria", "Velocidade (m/s):"))
-        self.pushButton.setText(_translate("arbitraria", "Calcular"))
+        Constante1.setWindowTitle(_translate("Constante1", "DIMduct >> Constante (1)"))
+        self.label.setText(_translate("Constante1", "Temperatura (°C):"))
+        self.label_2.setText(_translate("Constante1", "Comprimento do Trecho (m):"))
+        self.label_3.setText(_translate("Constante1", "Vazão do Trecho 1 (m³/s):"))
+        self.label_4.setText(_translate("Constante1", "Vazão do Trecho 2 (m³/s):"))
+        self.label_5.setText(_translate("Constante1", "Ângulo Total de Curvas (°):"))
+        self.label_6.setText(_translate("Constante1", "Rugosidade Absoluta (m):"))
+        self.label_7.setText(_translate("Constante1", "Tipo"))
+        self.comboBox.setItemText(0, _translate("Constante1", "Conforto"))
+        self.comboBox.setItemText(1, _translate("Constante1", "Industrial"))
+        self.titulo.setText(_translate("Constante1", "DIMduct"))
+        self.pushButton.setText(_translate("Constante1", "Calcular"))
 
     def calcula(self):
         # calculos
         results = {}
-        
+
         try:
             temp = float(self.lineEdit.text())
-            epsilon = float(self.lineEdit_2.text())
-            L = float(self.lineEdit_3.text())
-            Q = float(self.lineEdit_4.text())
+            L_1 = float(self.lineEdit_2.text())
+            Q_1 = float(self.lineEdit_3.text())
+            Q_2 = float(self.lineEdit_4.text())
             theta = float(self.lineEdit_5.text())
-            u = float(self.lineEdit_6.text())
-
-            rho = 101303 /(286.9 *(temp + 273.15))
-            mu = ((13 + 0.1 * temp)* 0.000001)* rho
-            D = math.sqrt((4.0 * Q) / (math.pi * u))
-            Re = rho * u * D / mu
-            f_0 = ( -1.8 * math.log10( (epsilon / (3.7 * D) ** 1.11 ) + 6.9 / Re ) ) ** -2.0
-            f = ( -2.0 * math.log10( epsilon / (3.7 * D) + 2.51 / (Re * math.sqrt(f_0)) ) ) ** -2.0
-            dP = rho*((f*L/D+0.1*(theta/90.0)))*((u**2.0)/2.0)
-            A = (math.pi*D**2)/4.0
-
-            results["Diâmetro"] = str(D) + " m"
-            results["Velocidade"] = str(u) + " m/s"
-            results["Perda de Carga"] = str(dP) + " Pa"
-            results["Área"] = str(A) + " m²"
-
-            # janela
-            self.window = QtWidgets.QDialog()
-            self.ui = Ui_Resultados()
-            self.ui.setupUi(self.window, results)
-
-            self.window.show()
+            epsilon = float(self.lineEdit_6.text())
+            tipo = self.comboBox.currentIndex()
         except:
-            self.erro = QtWidgets.QDialog()
-            self.ui = Ui_Erro()
-            self.ui.setupUi(self.erro, "Algum campo inválido.")
+            pass
 
-            self.erro.show()
-            
+        rho = 101303 /(286.9 *(temp + 273.15))
+        mu = ((13 + 0.1 * temp)* 0.000001)* rho
+
+        const_tipo = 25 if tipo else 32 #tipo==1 -> 25, tipo==0 -> 32
+
+        Q_1L = Q_1*1000.0 #[l/s]
+        D_1 = const_tipo*(math.pow(Q_1L, 0.38))/1000
+        A_1 = (math.pi*D_1**2.0)/4.0
+        u_1 = Q_1/A_1
+        Q_2L = Q_2*1000.0 #[l/s]
+        D_2 = const_tipo*(math.pow(Q_2L, 0.38))/1000
+        A_2 = (math.pi*D_2**2.0)/4.0
+        u_2 = Q_2/A_2
+
+           
+        Re = rho * u_1 * D_1 / mu
+        f_0 = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_1), 1.11) + 6.9 / Re), -2.0)
+        f = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_1) + 2.51 / (Re * math.sqrt(f_0))), -2.0)
+        dP_m = (f * L_1 / D_1 + 0.1 * theta / 90.0) * u_1 ** 2.0 * rho
+       
+        results["D1"] = str(D_1) + " m"
+        results["u1"] = str(u_1) + " m/s"
+        results["A1"] = str(A_1) + " m²"
+        results["D2"] = str(D_2) + " m"
+        results["u2"] = str(u_2) + " m/s" 
+        results["A2"] = str(A_2) + " m²"
+        results["dP m"] = str(dP_m) + " Pa/m"
+
+        # janela
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_Resultados()
+        self.ui.setupUi(self.window, results)
+
+        self.window.show()

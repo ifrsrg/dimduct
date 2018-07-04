@@ -9,8 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 
-from dim.resultados import Ui_Resultados
-from dim.erro import Ui_Erro
+from resultados import Ui_Resultados
 
 class Ui_Arbitraria(object):
     def setupUi(self, arbitraria):
@@ -213,31 +212,26 @@ class Ui_Arbitraria(object):
             Q = float(self.lineEdit_4.text())
             theta = float(self.lineEdit_5.text())
             u = float(self.lineEdit_6.text())
-
-            rho = 101303 /(286.9 *(temp + 273.15))
-            mu = ((13 + 0.1 * temp)* 0.000001)* rho
-            D = math.sqrt((4.0 * Q) / (math.pi * u))
-            Re = rho * u * D / mu
-            f_0 = ( -1.8 * math.log10( (epsilon / (3.7 * D) ** 1.11 ) + 6.9 / Re ) ) ** -2.0
-            f = ( -2.0 * math.log10( epsilon / (3.7 * D) + 2.51 / (Re * math.sqrt(f_0)) ) ) ** -2.0
-            dP = rho*((f*L/D+0.1*(theta/90.0)))*((u**2.0)/2.0)
-            A = (math.pi*D**2)/4.0
-
-            results["Diâmetro"] = str(D) + " m"
-            results["Velocidade"] = str(u) + " m/s"
-            results["Perda de Carga"] = str(dP) + " Pa"
-            results["Área"] = str(A) + " m²"
-
-            # janela
-            self.window = QtWidgets.QDialog()
-            self.ui = Ui_Resultados()
-            self.ui.setupUi(self.window, results)
-
-            self.window.show()
         except:
-            self.erro = QtWidgets.QDialog()
-            self.ui = Ui_Erro()
-            self.ui.setupUi(self.erro, "Algum campo inválido.")
+            pass
 
-            self.erro.show()
-            
+        rho = 101303 /(286.9 *(temp + 273.15))
+        mu = ((13 + 0.1 * temp)* 0.000001)* rho
+        D = math.sqrt((4.0 * Q) / (math.pi * u))
+        Re = rho * u * D / mu
+        f_0 = ( -1.8 * math.log10( (epsilon / (3.7 * D) ** 1.11 ) + 6.9 / Re ) ) ** -2.0
+        f = ( -2.0 * math.log10( epsilon / (3.7 * D) + 2.51 / (Re * math.sqrt(f_0)) ) ) ** -2.0
+        dP = rho*((f*L/D+0.1*(theta/90.0)))*((u**2.0)/2.0)
+        A = (math.pi*D**2)/4.0
+
+        results["Diâmetro"] = str(D) + " m"
+        results["Velocidade"] = str(u) + " m/s"
+        results["Perda de Carga"] = str(dP) + " Pa"
+        results["Área"] = str(A) + " m²"
+
+        # janela
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_Resultados()
+        self.ui.setupUi(self.window, results)
+
+        self.window.show()

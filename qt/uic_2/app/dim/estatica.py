@@ -11,6 +11,7 @@ import math
 from scipy.optimize import fsolve
 
 from dim.resultados import Ui_Resultados
+from dim.erro import Ui_Erro
 
 class Ui_Estatica(object):
     def setupUi(self, Estatica):
@@ -306,38 +307,43 @@ class Ui_Estatica(object):
             D_23_i = float(self.lineEdit_8.text())
             u_23_i = float(self.lineEdit_9.text())
             trecho = float(self.lineEdit_10.text())
+
+            rho = 101303 /(286.9 *(temp + 273.15))
+            mu = ((13 + 0.1 * temp)* 0.000001)* rho
+
+            def residuals(initial):
+                D_23 = initial[0]
+                u_23 = initial[1]
+                residual = [0.0, 0.0]
+                global Re
+                global f
+                Re = rho * u_23 * D_23 / mu
+                f_0 = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_23), 1.11) + 6.9 / Re), -2.0)
+                f = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_23) + 2.51 / (Re * math.sqrt(f_0))), -2.0)
+                residual[0] = (f * L_23 / D_23 + 0.1 * theta / 90.0 + R) * u_23 ** 2.0 - R * u_12 ** 2.0
+                residual[1] = D_23 - math.sqrt((4.0 * Q_23) / (math.pi * u_23))
+                return residual
+               
+
+            D_23, u_23 = fsolve(residuals, [D_23_i, u_23_i])
+            if trecho == 1: dP = (rho*f*L_23*u_23**2.0/(D_23*2.0))
+            A = (math.pi*D_23**2.0)/4.0
+            results["D2-3"] = str(D_23) + " m" # 3 casas
+            results["u2-3"] = str(u_23) + " m/s" #2 casas
+            results["A"] = str(A) + " m²" # 3 casas
+            results["f"] = str(f) # 4 casas
+            results["dP"] = str(dP) + " Pa" # 3 casas 
+
+            # janela
+            self.window = QtWidgets.QDialog()
+            self.ui = Ui_Resultados()
+            self.ui.setupUi(self.window, results)
+
+            self.window.show()
+
         except:
-            pass
+            self.erro = QtWidgets.QDialog()
+            self.ui = Ui_Erro()
+            self.ui.setupUi(self.erro, "Algum campo inválido.")
 
-        rho = 101303 /(286.9 *(temp + 273.15))
-        mu = ((13 + 0.1 * temp)* 0.000001)* rho
-
-        def residuals(initial):
-            D_23 = initial[0]
-            u_23 = initial[1]
-            residual = [0.0, 0.0]
-            global Re
-            global f
-            Re = rho * u_23 * D_23 / mu
-            f_0 = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_23), 1.11) + 6.9 / Re), -2.0)
-            f = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_23) + 2.51 / (Re * math.sqrt(f_0))), -2.0)
-            residual[0] = (f * L_23 / D_23 + 0.1 * theta / 90.0 + R) * u_23 ** 2.0 - R * u_12 ** 2.0
-            residual[1] = D_23 - math.sqrt((4.0 * Q_23) / (math.pi * u_23))
-            return residual
-           
-
-        D_23, u_23 = fsolve(residuals, [D_23_i, u_23_i])
-        if trecho == 1: dP = (rho*f*L_23*u_23**2.0/(D_23*2.0))
-        A = (math.pi*D_23**2.0)/4.0
-        results["D2-3"] = str(D_23) + " m" # 3 casas
-        results["u2-3"] = str(u_23) + " m/s" #2 casas
-        results["A"] = str(A) + " m²" # 3 casas
-        results["f"] = str(f) # 4 casas
-        results["dP"] = str(dP) + " Pa" # 3 casas 
-
-        # janela
-        self.window = QtWidgets.QDialog()
-        self.ui = Ui_Resultados()
-        self.ui.setupUi(self.window, results)
-
-        self.window.show()
+            self.erro.show()

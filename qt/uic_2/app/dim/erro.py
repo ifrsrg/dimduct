@@ -8,8 +8,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Form(object):
-    def setupUi(self, Form):
+class Ui_Erro(object):
+    def setupUi(self, Form, msg):
         Form.setObjectName("Form")
         Form.resize(640, 480)
         Form.setStyleSheet("* { background-color: rgb(11, 173, 224) }\n"
@@ -40,6 +40,9 @@ class Ui_Form(object):
         self.pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton.setFlat(True)
         self.pushButton.setObjectName("pushButton")
+
+        self.pushButton.clicked.connect(Form.close)
+
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(-1, 179, 641, 151))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -60,13 +63,13 @@ class Ui_Form(object):
         self.label_11.setObjectName("label_11")
         self.verticalLayout.addWidget(self.label_11)
 
-        self.retranslateUi(Form)
+        self.retranslateUi(Form, msg)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, Form, msg):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Erro"))
         self.titulo.setText(_translate("Form", "DIMduct"))
         self.pushButton.setText(_translate("Form", "OK"))
-        self.label_11.setText(_translate("Form", "TextLabel"))
+        self.label_11.setText(_translate("Form", msg))
 

@@ -10,8 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 from scipy.optimize import fsolve
 
-from dim.resultados import Ui_Resultados
-from dim.erro import Ui_Erro
+from resultados import Ui_Resultados
 
 class Ui_Constante2(object):
     def setupUi(self, Constante2):
@@ -318,50 +317,45 @@ class Ui_Constante2(object):
             trecho = float(self.lineEdit_8.text())
             dP_m1 = float(self.lineEdit_9.text())
             D_23_i = float(self.lineEdit_10.text())
-
-            rho = 101303 /(286.9 *(temp + 273.15))
-            mu = ((13 + 0.1 * temp)* 0.000001)* rho
-            if trecho == 1:
-                D_1 = math.sqrt((4.0 * Q_1) / (math.pi * u_1)) 
-                Re_i = rho * u_1 * D_1 / mu
-                f_0_i = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_1), 1.11) + 6.9 / Re_i), -2.0)
-                f_i = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_1) + 2.51 / (Re_i * math.sqrt(f_0_i))), -2.0)
-                dP_m1 = (f_i * L_23 / D_1 + 0.1 * theta / 90.0) * u_1 ** 2.0 * rho
-                D_23_i = D_1
-                u_23_i = u_1 
-
-            u_23_i = u_1
-            def residuals(initial):
-                D_23 = initial[0]
-                u_23 = initial[1]
-                residual = [0.0, 0.0]
-                global Re
-                global f
-                Re = rho * u_23 * D_23 / mu
-                f_0 = (-1.8 * math.log10(math.pow(epsilon / (3.7 * D_23), 1.11) + 6.9 / Re)) ** -2.0
-                f = (-2.0 * math.log10(epsilon / (3.7 * D_23) + 2.51 / (Re * math.sqrt(f_0)))) ** -2.0
-                residual[0] = (f * L_23 / D_23 + 0.1 * theta / 90.0)*u_23**2.0 - dP_m1    
-                residual[1] = D_23 - math.sqrt((4.0 * Q_23) / (math.pi * u_23))
-                return residual
-        
-            D_23, u_23 = fsolve(residuals, [D_23_i, u_23_i])
-
-            results["D2-3"] = str(D_23) + " m"
-            results["u2-3"] = str(u_23) + " m/s"
-            if trecho == 1 :
-                results["D1"] = str(D_1) + " m"
-            results["dP m1"] = str(dP_m1) + " Pa/m"
-
-            # janela
-            self.window = QtWidgets.QDialog()
-            self.ui = Ui_Resultados()
-            self.ui.setupUi(self.window, results)
-
-            self.window.show()
-            
         except:
-            self.erro = QtWidgets.QDialog()
-            self.ui = Ui_Erro()
-            self.ui.setupUi(self.erro, "Algum campo inválido.")
+            pass
 
-            self.erro.show()
+        rho = 101303 /(286.9 *(temp + 273.15))
+        mu = ((13 + 0.1 * temp)* 0.000001)* rho
+        if trecho == 1:
+            D_1 = math.sqrt((4.0 * Q_1) / (math.pi * u_1)) 
+            Re_i = rho * u_1 * D_1 / mu
+            f_0_i = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_1), 1.11) + 6.9 / Re_i), -2.0)
+            f_i = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_1) + 2.51 / (Re_i * math.sqrt(f_0_i))), -2.0)
+            dP_m1 = (f_i * L_23 / D_1 + 0.1 * theta / 90.0) * u_1 ** 2.0 * rho
+            D_23_i = D_1
+            u_23_i = u_1 
+
+        u_23_i = u_1
+        def residuals(initial):
+            D_23 = initial[0]
+            u_23 = initial[1]
+            residual = [0.0, 0.0]
+            global Re
+            global f
+            Re = rho * u_23 * D_23 / mu
+            f_0 = (-1.8 * math.log10(math.pow(epsilon / (3.7 * D_23), 1.11) + 6.9 / Re)) ** -2.0
+            f = (-2.0 * math.log10(epsilon / (3.7 * D_23) + 2.51 / (Re * math.sqrt(f_0)))) ** -2.0
+            residual[0] = (f * L_23 / D_23 + 0.1 * theta / 90.0)*u_23**2.0 - dP_m1    
+            residual[1] = D_23 - math.sqrt((4.0 * Q_23) / (math.pi * u_23))
+            return residual
+    
+        D_23, u_23 = fsolve(residuals, [D_23_i, u_23_i])
+
+        results["D2-3"] = str(D_23) + " m"
+        results["u2-3"] = str(u_23) + " m/s"
+        if trecho == 1 :
+            results["D1"] = str(D_1) + " m"
+        results["dP m1"] = str(dP_m1) + " Pa/m"
+
+        # janela
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_Resultados()
+        self.ui.setupUi(self.window, results)
+
+        self.window.show()

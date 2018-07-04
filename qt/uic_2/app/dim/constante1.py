@@ -10,6 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 
 from dim.resultados import Ui_Resultados
+from dim.erro import Ui_Erro
 
 class Ui_Constante1(object):
     def setupUi(self, Constante1):
@@ -237,40 +238,47 @@ class Ui_Constante1(object):
             theta = float(self.lineEdit_5.text())
             epsilon = float(self.lineEdit_6.text())
             tipo = self.comboBox.currentIndex()
-        except:
-            pass
 
-        rho = 101303 /(286.9 *(temp + 273.15))
-        mu = ((13 + 0.1 * temp)* 0.000001)* rho
+            rho = 101303 /(286.9 *(temp + 273.15))
+            mu = ((13 + 0.1 * temp)* 0.000001)* rho
 
-        const_tipo = 25 if tipo else 32 #tipo==1 -> 25, tipo==0 -> 32
+            const_tipo = 25 if tipo else 32 #tipo==1 -> 25, tipo==0 -> 32
 
-        Q_1L = Q_1*1000.0 #[l/s]
-        D_1 = const_tipo*(math.pow(Q_1L, 0.38))/1000
-        A_1 = (math.pi*D_1**2.0)/4.0
-        u_1 = Q_1/A_1
-        Q_2L = Q_2*1000.0 #[l/s]
-        D_2 = const_tipo*(math.pow(Q_2L, 0.38))/1000
-        A_2 = (math.pi*D_2**2.0)/4.0
-        u_2 = Q_2/A_2
+            Q_1L = Q_1*1000.0 #[l/s]
+            D_1 = const_tipo*(math.pow(Q_1L, 0.38))/1000
+            A_1 = (math.pi*D_1**2.0)/4.0
+            u_1 = Q_1/A_1
+            Q_2L = Q_2*1000.0 #[l/s]
+            D_2 = const_tipo*(math.pow(Q_2L, 0.38))/1000
+            A_2 = (math.pi*D_2**2.0)/4.0
+            u_2 = Q_2/A_2
 
+               
+            Re = rho * u_1 * D_1 / mu
+            f_0 = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_1), 1.11) + 6.9 / Re), -2.0)
+            f = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_1) + 2.51 / (Re * math.sqrt(f_0))), -2.0)
+            dP_m = (f * L_1 / D_1 + 0.1 * theta / 90.0) * u_1 ** 2.0 * rho
            
-        Re = rho * u_1 * D_1 / mu
-        f_0 = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_1), 1.11) + 6.9 / Re), -2.0)
-        f = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_1) + 2.51 / (Re * math.sqrt(f_0))), -2.0)
-        dP_m = (f * L_1 / D_1 + 0.1 * theta / 90.0) * u_1 ** 2.0 * rho
-       
-        results["D1"] = str(D_1) + " m"
-        results["u1"] = str(u_1) + " m/s"
-        results["A1"] = str(A_1) + " m²"
-        results["D2"] = str(D_2) + " m"
-        results["u2"] = str(u_2) + " m/s" 
-        results["A2"] = str(A_2) + " m²"
-        results["dP m"] = str(dP_m) + " Pa/m"
+            results["D1"] = str(D_1) + " m"
+            results["u1"] = str(u_1) + " m/s"
+            results["A1"] = str(A_1) + " m²"
+            results["D2"] = str(D_2) + " m"
+            results["u2"] = str(u_2) + " m/s" 
+            results["A2"] = str(A_2) + " m²"
+            results["dP m"] = str(dP_m) + " Pa/m"
 
-        # janela
-        self.window = QtWidgets.QDialog()
-        self.ui = Ui_Resultados()
-        self.ui.setupUi(self.window, results)
+            # janela
+            self.window = QtWidgets.QDialog()
+            self.ui = Ui_Resultados()
+            self.ui.setupUi(self.window, results)
 
-        self.window.show()
+            self.window.show()
+            
+        except:
+            self.erro = QtWidgets.QDialog()
+            self.ui = Ui_Erro()
+            self.ui.setupUi(self.erro, "Algum campo inválido.")
+
+            self.erro.show()
+
+        

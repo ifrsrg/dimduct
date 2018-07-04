@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'constante2.ui'
+# Form implementation generated from reading ui file 'estatica.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.2
 #
@@ -10,22 +10,18 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 from scipy.optimize import fsolve
 
-from dim.resultados import Ui_Resultados
-from dim.erro import Ui_Erro
+from resultados import Ui_Resultados
 
-class Ui_Constante2(object):
-    def setupUi(self, Constante2):
-        Constante2.setObjectName("Constante2")
-        Constante2.resize(800, 600)
-        Constante2.setStyleSheet("QWidget { background-color: rgb(11, 173, 224) }\n"
+class Ui_Estatica(object):
+    def setupUi(self, Estatica):
+        Estatica.setObjectName("Estatica")
+        Estatica.resize(800, 600)
+        Estatica.setStyleSheet("QWidget { background-color: rgb(11, 173, 224) }\n"
 "QPushButton { border-radius: 5px; background-color: white; border-bottom: 1px solid black }\n"
 "QPushButton:hover { background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(238, 238, 238, 255)) }\n"
-"QLineEdit, QComboBox { background-color: white; color: black }\n"
-"QComboBox { border-radius: 2px; border: 1px solid lightgrey }\n"
-"QComboBox::item { background-color: white }\n"
-"QComboBox::item:selected { background-color: rgb(11, 173, 224) }\n"
-"QLabel { color: white }")
-        self.titulo = QtWidgets.QLabel(Constante2)
+"QLabel{ color: white }\n"
+"QLineEdit{ background-color: white; color: black }")
+        self.titulo = QtWidgets.QLabel(Estatica)
         self.titulo.setGeometry(QtCore.QRect(0, 40, 801, 111))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -39,8 +35,8 @@ class Ui_Constante2(object):
         self.titulo.setStyleSheet("color: white")
         self.titulo.setAlignment(QtCore.Qt.AlignCenter)
         self.titulo.setObjectName("titulo")
-        self.pushButton = QtWidgets.QPushButton(Constante2)
-        self.pushButton.setGeometry(QtCore.QRect(200, 510, 401, 51))
+        self.pushButton = QtWidgets.QPushButton(Estatica)
+        self.pushButton.setGeometry(QtCore.QRect(200, 520, 401, 51))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -53,8 +49,8 @@ class Ui_Constante2(object):
 
         self.pushButton.clicked.connect(self.calcula)
 
-        self.formLayoutWidget = QtWidgets.QWidget(Constante2)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(0, 160, 801, 326))
+        self.formLayoutWidget = QtWidgets.QWidget(Estatica)
+        self.formLayoutWidget.setGeometry(QtCore.QRect(0, 170, 801, 326))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
         self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
         self.formLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -235,11 +231,9 @@ class Ui_Constante2(object):
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.FieldRole, self.lineEdit_8)
         self.label_9 = QtWidgets.QLabel(self.formLayoutWidget)
         font = QtGui.QFont()
-        font.setUnderline(True)
+        font.setFamily("Roboto")
+        font.setPointSize(12)
         self.label_9.setFont(font)
-        self.label_9.setCursor(QtGui.QCursor(QtCore.Qt.WhatsThisCursor))
-        self.label_9.setStatusTip("")
-        self.label_9.setStyleSheet("text-decoration: underline; font-size: 16px")
         self.label_9.setObjectName("label_9")
         self.formLayout.setWidget(8, QtWidgets.QFormLayout.LabelRole, self.label_9)
         self.lineEdit_9 = QtWidgets.QLineEdit(self.formLayoutWidget)
@@ -258,11 +252,9 @@ class Ui_Constante2(object):
         self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.lineEdit_9)
         self.label_10 = QtWidgets.QLabel(self.formLayoutWidget)
         font = QtGui.QFont()
-        font.setUnderline(True)
+        font.setFamily("Roboto")
+        font.setPointSize(12)
         self.label_10.setFont(font)
-        self.label_10.setCursor(QtGui.QCursor(QtCore.Qt.WhatsThisCursor))
-        self.label_10.setStatusTip("")
-        self.label_10.setStyleSheet("text-decoration: underline; font-size: 16px")
         self.label_10.setObjectName("label_10")
         self.formLayout.setWidget(9, QtWidgets.QFormLayout.LabelRole, self.label_10)
         self.lineEdit_10 = QtWidgets.QLineEdit(self.formLayoutWidget)
@@ -280,28 +272,24 @@ class Ui_Constante2(object):
         self.lineEdit_10.setObjectName("lineEdit_10")
         self.formLayout.setWidget(9, QtWidgets.QFormLayout.FieldRole, self.lineEdit_10)
 
-        self.retranslateUi(Constante2)
-        QtCore.QMetaObject.connectSlotsByName(Constante2)
+        self.retranslateUi(Estatica)
+        QtCore.QMetaObject.connectSlotsByName(Estatica)
 
-    def retranslateUi(self, Constante2):
+    def retranslateUi(self, Estatica):
         _translate = QtCore.QCoreApplication.translate
-        Constante2.setWindowTitle(_translate("Constante2", "DIMduct >> Constante (2)"))
-        self.titulo.setText(_translate("Constante2", "DIMduct"))
-        self.pushButton.setText(_translate("Constante2", "Calcular"))
-        self.label.setText(_translate("Constante2", "Temperatura (°C):"))
-        self.label_2.setText(_translate("Constante2", "Comprimento do Trecho (m):"))
-        self.label_3.setText(_translate("Constante2", "Vazão do Trecho (m³/s):"))
-        self.label_4.setText(_translate("Constante2", "Ângulo Total de Curvas (°):"))
-        self.label_5.setText(_translate("Constante2", "Rugosidade Absoluta (m):"))
-        self.label_6.setText(_translate("Constante2", "Vazão ao Trecho Ant. (m³/s):"))
-        self.label_7.setText(_translate("Constante2", "Velocidade Ant. (m/s):"))
-        self.label_8.setText(_translate("Constante2", "Trecho:"))
-        self.label_9.setToolTip(_translate("Constante2", "Por 0 no primeiro trecho"))
-        self.label_9.setWhatsThis(_translate("Constante2", "Por 0 no primeiro trecho"))
-        self.label_9.setText(_translate("Constante2", "Perda de Carga (Pa/m):"))
-        self.label_10.setToolTip(_translate("Constante2", "Por 0 no primeiro trecho"))
-        self.label_10.setWhatsThis(_translate("Constante2", "Por 0 no primeiro trecho"))
-        self.label_10.setText(_translate("Constante2", "Diâmetro 2-3 (m):"))
+        Estatica.setWindowTitle(_translate("Estatica", "DIMduct >> Estática"))
+        self.titulo.setText(_translate("Estatica", "DIMduct"))
+        self.pushButton.setText(_translate("Estatica", "Calcular"))
+        self.label.setText(_translate("Estatica", "Temperatura (°C):"))
+        self.label_2.setText(_translate("Estatica", "Comprimento do Trecho (m):"))
+        self.label_3.setText(_translate("Estatica", "Vazão do Trecho (m³/s):"))
+        self.label_4.setText(_translate("Estatica", "Velocidade Anterior (m/s):"))
+        self.label_5.setText(_translate("Estatica", "Ângulo Total de Curvas (°):"))
+        self.label_6.setText(_translate("Estatica", "Fator de Recuperação:"))
+        self.label_7.setText(_translate("Estatica", "Rugosidade Absoluta (m):"))
+        self.label_8.setText(_translate("Estatica", "Chute Diâmetro (m):"))
+        self.label_9.setText(_translate("Estatica", "Chute Velocidade (m/s):"))
+        self.label_10.setText(_translate("Estatica", "Trecho:"))
 
     def calcula(self):
         # calculos
@@ -309,59 +297,47 @@ class Ui_Constante2(object):
 
         try:
             temp = float(self.lineEdit.text())
-            L_23 = float(self.lineEdit_2.text())
-            Q_23 = float(self.lineEdit_3.text())
-            theta = float(self.lineEdit_4.text())
-            epsilon = float(self.lineEdit_5.text())
-            Q_1 = float(self.lineEdit_6.text())
-            u_1 = float(self.lineEdit_7.text())
-            trecho = float(self.lineEdit_8.text())
-            dP_m1 = float(self.lineEdit_9.text())
-            D_23_i = float(self.lineEdit_10.text())
-
-            rho = 101303 /(286.9 *(temp + 273.15))
-            mu = ((13 + 0.1 * temp)* 0.000001)* rho
-            if trecho == 1:
-                D_1 = math.sqrt((4.0 * Q_1) / (math.pi * u_1)) 
-                Re_i = rho * u_1 * D_1 / mu
-                f_0_i = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_1), 1.11) + 6.9 / Re_i), -2.0)
-                f_i = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_1) + 2.51 / (Re_i * math.sqrt(f_0_i))), -2.0)
-                dP_m1 = (f_i * L_23 / D_1 + 0.1 * theta / 90.0) * u_1 ** 2.0 * rho
-                D_23_i = D_1
-                u_23_i = u_1 
-
-            u_23_i = u_1
-            def residuals(initial):
-                D_23 = initial[0]
-                u_23 = initial[1]
-                residual = [0.0, 0.0]
-                global Re
-                global f
-                Re = rho * u_23 * D_23 / mu
-                f_0 = (-1.8 * math.log10(math.pow(epsilon / (3.7 * D_23), 1.11) + 6.9 / Re)) ** -2.0
-                f = (-2.0 * math.log10(epsilon / (3.7 * D_23) + 2.51 / (Re * math.sqrt(f_0)))) ** -2.0
-                residual[0] = (f * L_23 / D_23 + 0.1 * theta / 90.0)*u_23**2.0 - dP_m1    
-                residual[1] = D_23 - math.sqrt((4.0 * Q_23) / (math.pi * u_23))
-                return residual
-        
-            D_23, u_23 = fsolve(residuals, [D_23_i, u_23_i])
-
-            results["D2-3"] = str(D_23) + " m"
-            results["u2-3"] = str(u_23) + " m/s"
-            if trecho == 1 :
-                results["D1"] = str(D_1) + " m"
-            results["dP m1"] = str(dP_m1) + " Pa/m"
-
-            # janela
-            self.window = QtWidgets.QDialog()
-            self.ui = Ui_Resultados()
-            self.ui.setupUi(self.window, results)
-
-            self.window.show()
-            
+            L_23 = float(self.lineEdit_2.text()) # Comprimento do Trecho Atual
+            Q_23 = float(self.lineEdit_3.text()) # Vazão do Trecho Atual
+            u_12 = float(self.lineEdit_4.text())
+            theta = float(self.lineEdit_5.text())
+            R = float(self.lineEdit_6.text())
+            epsilon = float(self.lineEdit_7.text()) #Rugosidade
+            D_23_i = float(self.lineEdit_8.text())
+            u_23_i = float(self.lineEdit_9.text())
+            trecho = float(self.lineEdit_10.text())
         except:
-            self.erro = QtWidgets.QDialog()
-            self.ui = Ui_Erro()
-            self.ui.setupUi(self.erro, "Algum campo inválido.")
+            pass
 
-            self.erro.show()
+        rho = 101303 /(286.9 *(temp + 273.15))
+        mu = ((13 + 0.1 * temp)* 0.000001)* rho
+
+        def residuals(initial):
+            D_23 = initial[0]
+            u_23 = initial[1]
+            residual = [0.0, 0.0]
+            global Re
+            global f
+            Re = rho * u_23 * D_23 / mu
+            f_0 = math.pow(-1.8 * math.log10(math.pow(epsilon / (3.7 * D_23), 1.11) + 6.9 / Re), -2.0)
+            f = math.pow(-2.0 * math.log10(epsilon / (3.7 * D_23) + 2.51 / (Re * math.sqrt(f_0))), -2.0)
+            residual[0] = (f * L_23 / D_23 + 0.1 * theta / 90.0 + R) * u_23 ** 2.0 - R * u_12 ** 2.0
+            residual[1] = D_23 - math.sqrt((4.0 * Q_23) / (math.pi * u_23))
+            return residual
+           
+
+        D_23, u_23 = fsolve(residuals, [D_23_i, u_23_i])
+        if trecho == 1: dP = (rho*f*L_23*u_23**2.0/(D_23*2.0))
+        A = (math.pi*D_23**2.0)/4.0
+        results["D2-3"] = str(D_23) + " m" # 3 casas
+        results["u2-3"] = str(u_23) + " m/s" #2 casas
+        results["A"] = str(A) + " m²" # 3 casas
+        results["f"] = str(f) # 4 casas
+        results["dP"] = str(dP) + " Pa" # 3 casas 
+
+        # janela
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_Resultados()
+        self.ui.setupUi(self.window, results)
+
+        self.window.show()
