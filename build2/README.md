@@ -7,4 +7,5 @@ Pasta *python/* está compactada pra poder fazer upload, se for usar tem que des
 O que eles fazem é abrir o arquivo *DIMduct.py* usando o *python.exe* da pasta *python/*. Foi compilado usando **g++** atráves dos seguintes comandos (Windows cmd):
 
 **g++ -Wall -c -g DIMduct.cpp -o DIMduct.o**
+
 **g++ -static -static-libgcc -mwindows -static-libstdc++ -o DIMduct.exe DIMduct.o**
