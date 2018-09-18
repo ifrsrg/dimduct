@@ -1,5 +1,0 @@
-numpy==1.14.5
-PyQt5==5.11.2
-PyQt5-sip==4.19.12
-pyqtdeploy==2.1
-scipy==1.1.0

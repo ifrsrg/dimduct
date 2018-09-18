@@ -1,2 +1,2 @@
-# dimduct
+# DIMduct
 Projeto parceria Refri
